@@ -1,0 +1,33 @@
+Project 1:
+Web app that pinpoints playlists from Spotify depending on a music preferences/mood test/weather. 
+The web app will allow users to create an account on a website and log in to an account to take a 
+personality test on a third party website, who’s results would be displayed on our website and based
+on those results our website will display a list of playlists pulled from Spotify for the user to listen to. 
+
+Tech Stack:
+React.js
+Typescript
+Javascript
+Flask
+
+API’s:
+Spotify
+Flask JWT OAuth
+Weather API
+
+
+Project 2:
+Web app where a user inputs a to-do list, their assignment, midterms, and finals from which we create 
+a calendar with push notifications to remind the user. (either for each assignment or as a weekly assignment)
+
+
+Tech Stack:
+React.js
+Typescript
+Javascript
+Flask
+
+API’s:
+Google Calendar
+Things 3 API
+Flask JWT OAuth
