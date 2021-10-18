@@ -1,0 +1,15 @@
+As a logged-in user, I want to be able to access to the playlists on the spotify in order to edit those playlists 
+Right:  
+  Correct playlists are fetched
+  Playlists can be edited on both spotify and our app
+  The change can be updated on both side
+Errors: 
+  Playlists cannot be fetched
+  Wrong change of the playlists presents on either side
+  Registered user story has an error
+  No internet connection
+Reference: 
+  Registered user story
+  Spotify API
+  Weather playlist user story
+  Mood playlist user story
