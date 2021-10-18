@@ -1,0 +1,13 @@
+As a logged in user I want to have playlists created depending on weather in order to save the to my spotify
+
+Right:
+  a playlist is curriated depending on on the weather which is saved to your spotify
+  playlist is saved to your spoify account with spotify API
+Errors: 
+  cannot find playlist
+  cannot access weather data for specific location 
+  wrong tags or songs are presented
+Reference: 
+  Save playlist with spotify API, 
+  access weather data
+  Registered user story
