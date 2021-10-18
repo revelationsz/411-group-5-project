@@ -1,0 +1,11 @@
+As a non-registered user, I want to register my account with my spotify account in
+order to use all features of my spotify account (OAuth against spotify)
+
+Right: 
+  The account is connected to spotify account with spotify’s username 
+  The account is correctly setted with the username and password the user enters
+Errors: 
+  Not able to login to spotify
+  Wrong username or password present
+Reference:
+  Spotify API to login 
