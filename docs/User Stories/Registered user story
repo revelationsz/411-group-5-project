@@ -1,0 +1,12 @@
+As a registered user I want my spotify account login to be saved on 
+the app in order for me not to log in everytime i use the app
+
+Right:
+  Spotify acct information stored in database is accessed
+  Acct information is correct
+Errors:
+  Acct information is not correct
+  No internet connection to connect to spotify 
+Reference:
+  Accessing database of users login 
+  Spotify API
