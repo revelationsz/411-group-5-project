@@ -1,0 +1,15 @@
+As a logged-in user, I want to take a mood survey in order to have the app
+store the data for future use and or find a playlist on it 
+
+Right:  
+  Playlist from mood is found 
+  Mood is registered
+  Mood is saved to database for future use
+Errors: 
+  Pop out does not come up/cannot find survey
+  Mood is not registered
+  Cannot find playlist for mood
+Reference: 
+  Mood survey 
+  spotify api
+  regestered user story
