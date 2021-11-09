@@ -1,24 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './Login';
+import Dashboard from './Dashboard';
+
+
+const code = new URLSearchParams(window.location.search).get('code');
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-           <code>Starter page </code> 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-        </a>
-      </header>
-    </div>
-  );
+    return code ? <Dashboard code={code}/> : <Login />
 }
 
 export default App;
