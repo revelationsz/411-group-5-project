@@ -15,7 +15,7 @@ function TrackSearchResult({playlist, chooseTrack}) {
         <img src={Img} alt='' style={{height:"64px", width:"64px"}} />
          <div className="ml-5">
                 <div> {playlist.title}</div> 
-                <div className="text-muted">{playlist.artist}</div>
+                <div className="text-muted">{playlist.description}</div>
         </div>
        
         </div>

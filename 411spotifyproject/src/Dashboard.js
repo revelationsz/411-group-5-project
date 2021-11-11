@@ -17,26 +17,26 @@ export default function Dashboard({ code }) {
     const [playingTrack, setPlayingTrack] = useState()
     const [lyrics, setLyrics] = useState("")
     const [playingPlaylist, setPlayList] = useState()
+     
+    
 
     function chooseTrack(track) {
-     //   setPlayingTrack(track)
         setPlayList(track)
         setSearch("")
         setLyrics("")
     }
 
     // useEffect(() => {
-    //     if(!setPlayList) return
-
-    //     axios.get('http://localhost:3001/lyrics',{
-    //         params:{
-    //             track: playingTrack.title,
-    //             artist: playingTrack.artist,
-    //             playlist: playingPlaylist.name
-    //            // creator: playingPlaylist.
-    //         }
-    //     })
-    // })
+    //     if(!playingPlaylist) return
+    //     console.log(playingPlaylist.title)
+    //     // axios.
+    //     //     get('http://localhost:3001/lyrics',{
+    //     //     params:{
+    //     //         playlist: playingPlaylist.title,
+    //     //         artist: playingPlaylist.description
+    //     //     },
+    //     // })
+    // },[playingPlaylist])
 
     useEffect(() => {
         if(!accessToken) return 
@@ -52,14 +52,13 @@ export default function Dashboard({ code }) {
         spotifyApi.searchPlaylists(search).then(res => {
            if(cancel) return
             
-           console.log('Found playlists are', res.body);
-           console.log('Found playlists are', res.body.playlists.items[0].images[0].url);
-
+           console.log('Found playlists are', res);
+       
             setSearchResults(
                   res.body.playlists.items.map(playlist => {
-                      
+                    
                    return {
-                       artist: playlist.description,
+                        description: playlist.description,
                        title: playlist.name,
                        uri: playlist.uri,
                        albumUrl: playlist.images[0].url,
@@ -73,6 +72,8 @@ export default function Dashboard({ code }) {
         
         return () => cancel = true
     },[search, accessToken])
+
+  
 
     return (
         <Container className="d-flex flex-column py-2" style={{ 
@@ -90,16 +91,15 @@ export default function Dashboard({ code }) {
                         playlist={playlist}
                         key={playlist.uri}
                         chooseTrack={chooseTrack}
-                        
-                    />
-               ))}
+                        />
+                        ))}
                {searchResults.length === 0 && (
                    <div className="text-center" style={{ whilespace: 'pre'}}>
                        {lyrics}
                     </div>
                )}
+               <div> <Player accessToken={accessToken} trackUri={playingPlaylist?.uri} /></div>
            </div>
-           <div> <Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div>
         </Container>
     )
 }
