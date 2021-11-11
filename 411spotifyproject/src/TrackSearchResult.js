@@ -1,19 +1,23 @@
-import React from 'react'
+import React , {useEffect}from 'react'
 
-function TrackSearchResult({track, chooseTrack}) {
+function TrackSearchResult({playlist, chooseTrack}) {
     function handlePlay() {
-        chooseTrack(track)
+        chooseTrack(playlist)
     }
+
+    const Img =  playlist.albumUrl
+    
     return (
         <div className="d-flex m-2 algin-items-center"
-            style= {{cursor: 'pointer'}}
-            onClick={handlePlay}
+        style= {{cursor: 'pointer'}}
+        onClick={handlePlay}
         >
-            <img src={track.albumUrl} style={{height:"64px", width:"64px"}}/>
-            <div className="ml-5">
-                <div> {track.title}</div> 
-                <div className="text-muted">{track.artist}</div>
-            </div>
+        <img src={Img} alt='' style={{height:"64px", width:"64px"}} />
+         <div className="ml-5">
+                <div> {playlist.title}</div> 
+                <div className="text-muted">{playlist.artist}</div>
+        </div>
+       
         </div>
     )
 }

@@ -16,23 +16,27 @@ export default function Dashboard({ code }) {
     const [searchResults, setSearchResults] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
     const [lyrics, setLyrics] = useState("")
+    const [playingPlaylist, setPlayList] = useState()
 
     function chooseTrack(track) {
-        setPlayingTrack(track)
+     //   setPlayingTrack(track)
+        setPlayList(track)
         setSearch("")
         setLyrics("")
     }
 
-    useEffect(() => {
-        if(!playingTrack) return
+    // useEffect(() => {
+    //     if(!setPlayList) return
 
-        axios.get('http://localhost:3001/lyrics',{
-            params:{
-                track: playingTrack.title,
-                artist: playingTrack.artist
-            }
-        })
-    })
+    //     axios.get('http://localhost:3001/lyrics',{
+    //         params:{
+    //             track: playingTrack.title,
+    //             artist: playingTrack.artist,
+    //             playlist: playingPlaylist.name
+    //            // creator: playingPlaylist.
+    //         }
+    //     })
+    // })
 
     useEffect(() => {
         if(!accessToken) return 
@@ -44,28 +48,29 @@ export default function Dashboard({ code }) {
         if(!accessToken) return 
         
         let cancel = false
-        spotifyApi.searchTracks(search).then(res => {
-            if(cancel) return
+      
+        spotifyApi.searchPlaylists(search).then(res => {
+           if(cancel) return
+            
+           console.log('Found playlists are', res.body);
+           console.log('Found playlists are', res.body.playlists.items[0].images[0].url);
+
             setSearchResults(
-                res.body.tracks.items.map(track => {
-                const smallestAlblumImage = track.album.images.reduce(
-                    (smallest, image) => {
-                        if (image.height < smallest.height) return image
-                        return smallest
-                    }, 
-                    track.album.images[0]
-                )
-
-                return {
-                    artist: track.artists[0].name, 
-                    title: track.name,
-                    uri: track.uri,
-                    albumUrl: smallestAlblumImage.url,
-                }
-            })
+                  res.body.playlists.items.map(playlist => {
+                      
+                   return {
+                       artist: playlist.description,
+                       title: playlist.name,
+                       uri: playlist.uri,
+                       albumUrl: playlist.images[0].url,
+                   }})
+                   
             )
-        })
+            },function(err) {
+                console.log('Something went wrong!', err);
+         });
 
+        
         return () => cancel = true
     },[search, accessToken])
 
@@ -78,14 +83,14 @@ export default function Dashboard({ code }) {
             placeholder="Search Songs/Artists" 
             value={search}
             onChange={e => setSearch(e.target.value)}
-         //   style={{ height: '200px'}}
            />
            <div className="flex-grow-1 my-2" style={{overflowY: "auto"}}>
-               {searchResults.map(track => (
+               {searchResults.map(playlist => (
                    <TrackSearchResult 
-                        track={track}
-                        key={track.uri}
+                        playlist={playlist}
+                        key={playlist.uri}
                         chooseTrack={chooseTrack}
+                        
                     />
                ))}
                {searchResults.length === 0 && (
