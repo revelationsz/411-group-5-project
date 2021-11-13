@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from tkinter import *
 import math
 
+
 city_name = "Boston,US"
 
 api_key = "950143afcefc9332553b25a26396132e"
