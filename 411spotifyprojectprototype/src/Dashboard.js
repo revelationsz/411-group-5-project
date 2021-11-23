@@ -20,30 +20,27 @@ export default function Dashboard({ code }) {
     const [lyrics, setLyrics] = useState("")
     const [playingPlaylist, setPlayList] = useState()
     const [Location, setLocation] = useState("")
-     
-
+    const [Weather, setWeather] = useState("")
 
     const successfulLookup = position => { //gets location from long and lat
-        
         const {latitude, longitude} = position.coords;
         fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=ee2cb42391a0428980f82186d9efe4a8`)
             .then(re => re.json())
             .then(data => {
-                console.log(data.results[0].components)
                 setLocation(
                     data.results[0].components.city
-                )                        
+                )                               
              })
          }
         
-        function chooseTrack(track) {
+        function chooseTrack(track) { //chooses track
             setPlayList(track)
             setSearch("")
             setLyrics("")
         }
         
-        useEffect(() => { //gets loc in form of long and lat 
-                window.navigator.geolocation.getCurrentPosition(successfulLookup, console.log)
+        useEffect(() => { //gets loc in form of long and lat and current weather
+                window.navigator.geolocation.getCurrentPosition(successfulLookup, console.log)            
         },[])
 
 
@@ -58,13 +55,27 @@ export default function Dashboard({ code }) {
     //     //     },
     //     // })
     // },[playingPlaylist])
+    useEffect(() => { //gets weather data
+        if(!Location) return
 
-    useEffect(() => {
+        fetch('http://api.openweathermap.org/data/2.5/weather?q='+Location+'&appid=08473323d957a10a040eb70deb579c9e')
+        .then(re => re.json())
+        .then(data => {
+            console.log(data)
+            setWeather(
+               data.weather[0].description
+            )
+            console.log(Weather)
+         })
+    },[Location])
+
+
+    useEffect(() => { //gets access token for us to use spotify api
         if(!accessToken) return 
         spotifyApi.setAccessToken(accessToken)
     },[accessToken])
 
-    useEffect(() => {
+    useEffect(() => { //does the main search function based on our input
         if(!search) return setSearchResults([])
         if(!accessToken) return 
         
@@ -101,7 +112,7 @@ export default function Dashboard({ code }) {
             value={search}
             onChange={e => setSearch(e.target.value)}
            /> }
-           <button onClick={e => setSearch(Location)}> Search </button>
+           <button onClick={e => setSearch(Weather) }> Search based on weather</button>
            <div className="flex-grow-1 my-2" style={{overflowY: "auto"}}>
                {searchResults.map(playlist => (
                    <TrackSearchResult 
