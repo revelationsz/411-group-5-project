@@ -1,23 +1,27 @@
-import React , {useEffect}from 'react'
+import React , {useState, useEffect}from 'react'
+import './TrackSearchResults.css';
 
 function TrackSearchResult({playlist, chooseTrack}) {
+    const [play, setPlay] = useState(true)
     function handlePlay() {
         chooseTrack(playlist)
     }
 
     const Img =  playlist.albumUrl
     
+    
+
     return (
-        <div className="d-flex m-2 algin-items-center"
-        style= {{cursor: 'pointer'}}
-        onClick={handlePlay}
+        <div className="con"
+            style= {{cursor: 'pointercolums', height: '300px'}}
+            onClick={handlePlay}
         >
-        <img src={Img} alt='' style={{height:"64px", width:"64px"}} />
-         <div className="ml-5">
-                <div> {playlist.title}</div> 
-                <div className="text-muted">{playlist.description}</div>
-        </div>
-       
+            <img src={Img} alt='' style={{height:"180px", width:"190px"}} 
+                className = "img "
+            />
+            <div className="title">
+                {playlist.title}     
+            </div>
         </div>
     )
 }

@@ -10,6 +10,22 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// var connection = require('express-myconnection');
+// var mysql = require('mysql');
+// app.use(
+//     connection(mysql, {
+//         host: '127.0.0.1', //'localhost',
+//         user: 'root',
+//         password: '411spotify', //CHANGE
+//         port: 3306, //port mysql
+//         database: 'songapp'
+
+//     }, 'pool')
+//); //or single
+
+
+
 app.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
