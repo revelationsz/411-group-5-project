@@ -47,7 +47,7 @@ app.post('/login', (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err)
+        console.log(4444)
         res.sendStatus(400)
     })
 })
@@ -59,3 +59,12 @@ app.get('/lyrics', async (req, res) => {
 
 
 app.listen(3001)
+
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://cs411.r2shu.mongodb.net/CS411?authSource=CS411retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});

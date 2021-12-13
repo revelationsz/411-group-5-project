@@ -16,6 +16,7 @@ export default function useAuth(code) {
             setExpiresIn(res.data.expiresIn)
             window.history.pushState({}, null, "/")
         }).catch(() => {
+            console.log("teset2")
             window.location = "/"
         })
     }, [code])
@@ -31,6 +32,7 @@ export default function useAuth(code) {
                 setAccessToken(res.data.accessToken)
                 setExpiresIn(res.data.expiresIn) 
             }).catch(() => {
+                console.log("test")
                 window.location = "/"
             })
         }, (expiresIn-60)*1000)

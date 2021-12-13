@@ -24,7 +24,7 @@ export default function Dashboard({ code }) {
 
     const successfulLookup = position => { //gets location from long and lat
         const {latitude, longitude} = position.coords;
-        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=ee2cb42391a0428980f82186d9efe4a8`)
+        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=a59a2a82e66548ee8856f961a651f90c`)
             .then(re => re.json())
             .then(data => {
                 setLocation(
