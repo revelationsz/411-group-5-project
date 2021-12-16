@@ -16,6 +16,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "lyrics-finder": "^21.7.0",
+    "mongodb": "^4.2.2",
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {

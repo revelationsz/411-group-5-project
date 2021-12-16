@@ -45,6 +45,7 @@ export default function Dashboard(props) {
             window.navigator.geolocation.getCurrentPosition(successfulLookup, console.log)            
         },[])
     
+        
     const moodForm = (sum) => {
             if(sum == 15){
                 return "Chill"
@@ -57,7 +58,6 @@ export default function Dashboard(props) {
             }
         }
     const mood = moodForm(props.mood)
-    
     useEffect(() => { //gets weather data
         if(!Location) return
 

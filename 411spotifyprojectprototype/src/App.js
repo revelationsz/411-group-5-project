@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Survey from './Mood'
+import stuff from './mdbstuff'
 
 
 const code = new URLSearchParams(window.location.search).get('code');
@@ -11,6 +12,7 @@ const code = new URLSearchParams(window.location.search).get('code');
 
 function App() {
     return (
+       // stuff("test@gmail.com", 1),
         code ? <Survey code={code}/> : <Login />
         
     )

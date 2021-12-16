@@ -80,7 +80,7 @@ const json = {
             rateValues: [
               {
                 value: 5,
-                text: "1111"
+                text: "1"
               },
               {
                 value: 4,
