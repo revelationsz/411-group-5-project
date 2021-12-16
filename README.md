@@ -1,4 +1,4 @@
-# 411-group-5-project
+# Moodify!
 
 In order to run the app:
 1) Move to the 411spotifyprojectprototype folder.
