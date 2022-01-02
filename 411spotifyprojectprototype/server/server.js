@@ -76,12 +76,7 @@ const userInfoSchema = new Schema({
     mood: Number
 })
 
-//model
 const userInfo = mongoose.model('UserInfo', userInfoSchema)
-
-
-
-
 
 app.post('/sendinfo', (req,res) => {
     console.log(req.body)
@@ -97,7 +92,6 @@ app.post('/sendinfo', (req,res) => {
     
 app.use(morgan('tiny'))
 
-
 app.get('/getinfo',(req,res) => { 
     userInfo.find({ })
     .then((data) => {
@@ -109,8 +103,6 @@ app.get('/getinfo',(req,res) => {
     })
    
 })
-
-
 
 app.listen(3001)
 

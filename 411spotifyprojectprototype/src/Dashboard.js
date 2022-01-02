@@ -69,10 +69,6 @@ export default function Dashboard(props) {
             console.log(error)
         })
 
-        axios.get('http://localhost:3001/info')
-        .then((response) => {
-            console.log(response, "test")
-        })
 
     },[email])
 
