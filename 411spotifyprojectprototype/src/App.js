@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 import Survey from './Mood'
 import stuff from './mdbstuff'
 
+const axios = require('axios')
 
 const code = new URLSearchParams(window.location.search).get('code');
 
@@ -11,6 +12,7 @@ const code = new URLSearchParams(window.location.search).get('code');
 //const page = mood ? <Dashboard code={code}/> : <Survey/>
 
 function App() {
+
     return (
        // stuff("test@gmail.com", 1),
         code ? <Survey code={code}/> : <Login />
