@@ -6,13 +6,6 @@ const json = {
         name: "page1",
         elements: [
           {
-            type: "text",
-            name: "email",
-            title: "Enter your email:",
-            isRequired: true,
-            inputType: "email"
-          },
-          {
             type: "rating",
             name: "question1",
             title: "Are you feeling energetic today?",

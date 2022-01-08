@@ -6,17 +6,12 @@ import Dashboard from './Dashboard';
 import axios from 'axios'
 
 
-
-
-const  MoodSurvey = ( {code}) =>{
+const  MoodSurvey = (props) =>{
   const [showPage, setShowPage] = useState(true)
   const [mood, setMood] = useState()
-  const [email, setEmail] = useState("")
+  const email = props.email
   
-
   const onCompletePage = useCallback((data)=>{
-    console.log(data.valuesHash)
-    setEmail(data.valuesHash.email)
     var one = ((data.valuesHash.question1))
     var two = ((data.valuesHash.question2))
     var three = ((data.valuesHash.question3))
@@ -40,9 +35,7 @@ const  MoodSurvey = ( {code}) =>{
         console.log(err)
         ) 
     }
-    
   },[mood])
-
 
   const Mysurvey = (prop) => {
     return(
@@ -61,14 +54,12 @@ const  MoodSurvey = ( {code}) =>{
         setMood(sum)
   }
 
-
-
     return ( 
       <div className="App">
           {
             showPage?
             <Mysurvey showCompletedPage={data=>onCompletePage(data)}/>:
-           <Dashboard code = {code} email={email}/>
+            <Dashboard code = {props.code} email={email} mood={mood}/>
             
           }
       </div>

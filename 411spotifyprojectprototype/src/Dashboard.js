@@ -45,8 +45,6 @@ export default function Dashboard(props) {
     useEffect(() => { //gets loc in form of long and lat and current weather
             window.navigator.geolocation.getCurrentPosition(successfulLookup, console.log)            
         },[])
-    
-    
 
     const moodForm = (sum) => {
             if(sum == 15)return "Chill"
@@ -54,27 +52,28 @@ export default function Dashboard(props) {
             else return "Sad"
         }
 
-
     useEffect(() => {
-        console.log("test")
-        axios.get('http://localhost:3001/getinfo', email)
-        .then((response) => {
-            const data= response.data
-            for(var i = 0; i < data.length; i++){
-                console.log(data[i])
-               if(data[i].email == email) setMood(moodForm(data[i].mood)) 
-            }
-            console.log(data, "test")
-        }).catch((error) => {
-            console.log(error)
-        })
-
-
-    },[email])
+        console.log(props.email)
+        if(props.mood == null){
+            axios.get('http://localhost:3001/getinfo', email)
+            .then((response) => {
+                const data= response.data
+                for(var i = 0; i < data.length; i++){
+                    if(data[i].email == email){
+                        setMood(moodForm(data[i].mood)) 
+                    } 
+                } 
+                return mood
+            }).catch((error) => {
+                console.log(error)
+            })
+        } else {
+            setMood(moodForm(props.mood))
+        }
+    },[mood])
 
     useEffect(() => { //gets weather data
         if(!Location) return
-
         fetch('http://api.openweathermap.org/data/2.5/weather?q='+Location+'&appid=08473323d957a10a040eb70deb579c9e')
         .then(re => re.json())
         .then(data => {
@@ -85,7 +84,6 @@ export default function Dashboard(props) {
          //   console.log(Weather)
          })
     },[Location])
-
 
     useEffect(() => { //gets access token for us to use spotify api
         if(!accessToken) return 
@@ -133,7 +131,7 @@ export default function Dashboard(props) {
            /> }
            <div className="buttons">
              <button onClick={e => setSearch(Weather) }> Search based on weather </button>
-             <button onClick={e => setSearch(mood)}> Search based on mood</button>
+             <button onClick={e => setSearch(mood) }> Search based on mood</button>
            </div>
            <div className="conter" >
                {searchResults.map(playlist => (
